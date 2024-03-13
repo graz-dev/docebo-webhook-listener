@@ -1,7 +1,13 @@
-import { IsDate, IsString, IsNumber, IsNotEmpty } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsNotEmpty,
+  IsDateString,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateTransactionPayloadDto {
-  @IsDate()
+  @IsDateString()
   readonly fired_at: Date;
 
   @IsNumber()
@@ -23,14 +29,16 @@ export class CreateTransactionPayloadDto {
   @IsString()
   readonly level: string;
 
-  @IsDate()
+  @IsDateString()
   @IsNotEmpty()
   readonly enrollment_date: Date;
 
-  @IsDate()
+  @IsOptional()
+  @IsDateString()
   readonly enrollment_date_begin_validity: Date | null;
 
-  @IsDate()
+  @IsOptional()
+  @IsDateString()
   readonly enrollment_date_end_validity: Date | null;
 
   @IsNumber()
