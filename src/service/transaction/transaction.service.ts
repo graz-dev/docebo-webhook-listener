@@ -11,9 +11,9 @@ export class TransactionService {
   ) {}
 
   async createTransaction(createTransactionDto: CreateTransactionDto) {
-    const newTransaction = await new this.transactionModel(
-      createTransactionDto,
-    );
+    const { message_id: _id, ...rest } = createTransactionDto;
+    const t = { ...rest, _id };
+    const newTransaction = await new this.transactionModel(t);
     newTransaction.save();
   }
 }

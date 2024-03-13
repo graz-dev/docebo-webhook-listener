@@ -12,7 +12,7 @@ export class Transaction {
   fired_by_batch_action: boolean;
 
   @Prop()
-  message_id: string;
+  _id: string;
 
   @Prop(
     raw({

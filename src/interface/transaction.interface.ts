@@ -17,6 +17,6 @@ export interface IPayload extends Document {
 export interface ITransaction extends Document {
   readonly event: Date;
   readonly fired_by_batch_action: boolean;
-  readonly message_id: string;
+  readonly _id: string;
   readonly payload: IPayload;
 }

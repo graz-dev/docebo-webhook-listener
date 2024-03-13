@@ -12,10 +12,17 @@ export class TransactionController {
     @Body() createTransactionDto: CreateTransactionDto,
   ) {
     try {
-      await this.transactionService.createTransaction(createTransactionDto);
-      return response.status(HttpStatus.OK);
+      const newTransaction =
+        await this.transactionService.createTransaction(createTransactionDto);
+      return response.status(HttpStatus.OK).json({
+        message: 'Transaction has been saved successfully',
+        newTransaction,
+      });
     } catch (err) {
-      return response.status(HttpStatus.BAD_REQUEST);
+      return response.status(HttpStatus.BAD_REQUEST).json({
+        message: 'Transaction not saved!',
+        err,
+      });
     }
   }
 }
