@@ -2,13 +2,19 @@
 
 _Docebo Webhook Listener_ is a simple project designed to retrieve your Docebo webhook transactions and manage them. At its core, it utilizes NestJS to create a server for receiving transactions and storing them in a _MongoDB_ collection.
 
-Additionally, it employs a _NestJS Middleware_ to manipulate the received transaction messages based on the event property, enabling aggregation or any other computational tasks on specific resources.
+Additionally, it employs a _NestJS Interceptors_ to manipulate the received transaction messages based on the event property, enabling aggregation or any other computational tasks on specific resources.
 
-> Due to Docebo's error handling, which considers a request as failed if a 200 response is not received within 5 seconds, the project utilizes the NestJS Middleware to persist each webhook message. After sending the response to Docebo, it then performs any computational tasks to keep the response latency to a minimum.
+> Due to Docebo's error handling, which considers a request as failed if a 200 response is not received within 5 seconds, the project utilizes the NestJS Interceptors to persist each webhook message. After sending the response to Docebo, it then performs any computational tasks to keep the response latency to a minimum.
 
 [Check the feature list & roadmap](#roadmap)
 
-## Getting started
+## Documentation 
+
+### Index
+
+1. [Run the project locally](#run-the-project-locally)
+
+### Run the project locally
 
 To run the project locally follow the following steps:
 
@@ -40,10 +46,10 @@ $ npm run start
 
 - [X] Get all incoming Docebo webhooks call and save them in a MongoDB collection
 - [X] Handle errors persisting transaction saving transaction errors on a dedicated MongoDB collection to keep track of all errors and eventually retry
-- [X] Manage `transactions` & `transaction_errors` collection retantion based on configurations
 
-## Next in pipeline 
+### Next in pipeline 
 
+- [ ] Manage `transactions` & `transaction_errors` collection retantion based on configurations
 - [ ] Manage `Enrollments` events
   - [ ] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
   - [ ] Handle enrollments update
@@ -51,7 +57,7 @@ $ npm run start
   - [ ] Handle enrollment in ILT courses 
   - [ ] Handle couses completion
 
-## Pay Attention
+### Pay Attention
 
 Right now the project doesn't support the following Docebo webhooks configuration:
 
