@@ -50,7 +50,9 @@ $ npm run start
 ### Next in pipeline 
 
 - [ ] Manage `transactions` & `transaction_errors` collection retantion based on configurations
+- [ ] Manage `compute_errors` collection to save errors from transaction compute
 - [ ] Manage `Enrollments` events
+  - [ ] Handel collection initial load 
   - [ ] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
   - [ ] Handle enrollments update
   - [ ] Handle enrollments deletion
