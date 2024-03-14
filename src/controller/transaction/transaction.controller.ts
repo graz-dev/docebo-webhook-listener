@@ -19,6 +19,10 @@ export class TransactionController {
         newTransaction,
       });
     } catch (err) {
+      await this.transactionService.persistTransactionError(
+        createTransactionDto,
+        err.message,
+      );
       return response.status(HttpStatus.BAD_REQUEST).json({
         message: 'Transaction not saved!',
         err,

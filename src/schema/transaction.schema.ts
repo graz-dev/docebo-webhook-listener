@@ -3,7 +3,7 @@ import { HydratedDocument } from 'mongoose';
 
 export type TransactionDocument = HydratedDocument<Transaction>;
 
-@Schema()
+@Schema({ collection: 'transactions' })
 export class Transaction {
   @Prop()
   event: string;

@@ -8,6 +8,7 @@ import { TransactionController } from './controller/transaction/transaction.cont
 import { TransactionService } from './service/transaction/transaction.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TransactionSchema } from './schema/transaction.schema';
+import { TransactionErrorSchema } from './schema/transactionError.schema';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
@@ -24,6 +25,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
     MongooseModule.forFeature([
       { name: 'Transaction', schema: TransactionSchema },
+      { name: 'TransactionError', schema: TransactionErrorSchema },
     ]),
   ],
   controllers: [TransactionController],
