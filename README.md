@@ -6,6 +6,8 @@ Additionally, it employs a _NestJS Middleware_ to manipulate the received transa
 
 > Due to Docebo's error handling, which considers a request as failed if a 200 response is not received within 5 seconds, the project utilizes the NestJS Middleware to persist each webhook message. After sending the response to Docebo, it then performs any computational tasks to keep the response latency to a minimum.
 
+[Check the feature list & roadmap](#roadmap)
+
 ## Getting started
 
 To run the project locally follow the following steps:
@@ -32,6 +34,22 @@ $ yarn run start
 or
 $ npm run start
 ```
+## Roadmap
+
+### Already Available
+
+- [X] Get all incoming Docebo webhooks call and save them in a MongoDB collection
+- [X] Handle errors persisting transaction saving transaction errors on a dedicated MongoDB collection to keep track of all errors and eventually retry
+- [X] Manage `transactions` & `transaction_errors` collection retantion based on configurations
+
+## Next in pipeline 
+
+- [ ] Manage `Enrollments` events
+  - [ ] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
+  - [ ] Handle enrollments update
+  - [ ] Handle enrollments deletion
+  - [ ] Handle enrollment in ILT courses 
+  - [ ] Handle couses completion
 
 ## Pay Attention
 
