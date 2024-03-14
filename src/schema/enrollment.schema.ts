@@ -36,4 +36,7 @@ export class Enrollment {
   status: string;
 }
 
-export const EnrollmentSchema = SchemaFactory.createForClass(Enrollment);
+export const EnrollmentSchema = SchemaFactory.createForClass(Enrollment).index(
+  { course_id: 1, user_id: 1 },
+  { unique: true },
+);
