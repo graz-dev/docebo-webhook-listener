@@ -32,3 +32,10 @@ $ yarn run start
 or
 $ npm run start
 ```
+
+## Pay Attention
+
+Right now the project doesn't support the following Docebo webhooks configuration:
+
+1. Payload grouping for events of the same type
+2. Additional data and `extra_data` property

@@ -7,8 +7,6 @@ import {
   IsObject,
   IsBoolean,
 } from 'class-validator';
-import { Type } from 'class-transformer';
-import { CreateTransactionPayloadDto } from './create-transactionpayload.dto';
 
 export class CreateTransactionDto {
   @IsString()
@@ -26,6 +24,5 @@ export class CreateTransactionDto {
   @IsDefined()
   @IsNotEmptyObject()
   @ValidateNested()
-  @Type(() => CreateTransactionPayloadDto)
-  readonly payload: CreateTransactionPayloadDto;
+  readonly payload: any;
 }

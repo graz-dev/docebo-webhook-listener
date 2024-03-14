@@ -14,21 +14,7 @@ export class Transaction {
   @Prop()
   _id: string;
 
-  @Prop(
-    raw({
-      fired_at: { type: Date },
-      user_id: { type: String },
-      username: { type: String },
-      course_id: { type: Number },
-      course_name: { type: String },
-      level: { type: String },
-      enrollment_date: { type: Date },
-      enrollment_date_begin_validity: { type: Date },
-      enrollment_date_end_validity: { type: Date },
-      subscribed_by_id: { type: Number },
-      status: { type: String },
-    }),
-  )
+  @Prop(raw({}))
   payload: Record<string, any>;
 }
 
