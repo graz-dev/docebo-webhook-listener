@@ -5,10 +5,7 @@ import { ITransaction } from 'src/interface/transaction.interface';
 import { Model } from 'mongoose';
 import { ITransactionError } from 'src/interface/transactionError.interface';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  Transaction,
-  TransactionDocument,
-} from 'src/schema/transaction.schema';
+import { Transaction } from 'src/schema/transaction.schema';
 import { TransactionError } from 'src/schema/transactionError.schema';
 
 @Injectable()
