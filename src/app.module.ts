@@ -11,6 +11,9 @@ import { TransactionSchema } from './schema/transaction.schema';
 import { TransactionErrorSchema } from './schema/transactionError.schema';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { EnrollmentService } from './service/enrollment/enrollment.service';
+import { EnrollmentSchema } from './schema/enrollment.schema';
+import { ComputeService } from './service/compute/compute.service';
 
 @Module({
   imports: [
@@ -26,10 +29,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     MongooseModule.forFeature([
       { name: 'Transaction', schema: TransactionSchema },
       { name: 'TransactionError', schema: TransactionErrorSchema },
+      { name: 'Enrollment', schema: EnrollmentSchema },
     ]),
   ],
   controllers: [TransactionController],
-  providers: [TransactionService],
+  providers: [TransactionService, EnrollmentService, ComputeService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

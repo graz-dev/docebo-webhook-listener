@@ -1,10 +1,14 @@
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { CreateTransactionDto } from 'src/dto/create-transaction.dto';
 import { TransactionService } from 'src/service/transaction/transaction.service';
+import { ComputeService } from 'src/service/compute/compute.service';
 
 @Controller('transaction')
 export class TransactionController {
-  constructor(private readonly transactionService: TransactionService) {}
+  constructor(
+    private readonly transactionService: TransactionService,
+    private readonly computeService: ComputeService,
+  ) {}
 
   @Post()
   async createTransaction(
@@ -14,6 +18,10 @@ export class TransactionController {
     try {
       const newTransaction =
         await this.transactionService.createTransaction(createTransactionDto);
+      this.computeService
+        .compute(newTransaction)
+        .then(() => console.log('EXECUTED'))
+        .catch(() => console.error('ERROR'));
       return response.status(HttpStatus.OK).json({
         message: 'Transaction has been saved successfully',
         newTransaction,
