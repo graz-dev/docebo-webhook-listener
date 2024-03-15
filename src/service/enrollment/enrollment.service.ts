@@ -23,6 +23,44 @@ export class EnrollmentService {
     }
   }
 
+  async updateEnrollment(payload: Record<string, any>): Promise<Enrollment> {
+    const e = await this.buildEnrollmentObject(payload);
+    const enrollment = await this.getEnrollmentByUserAndCourse(
+      e.user_id,
+      e.course_id,
+    );
+    if (enrollment === null) {
+      throw new Error(
+        `Can't update enrollment becouse no enrollment exist with 'user_id' ${e.user_id} and 'course_id' ${e.course_id}`,
+      );
+    } else {
+      const updEnrollment = this.enrollmentModel.findByIdAndUpdate(
+        enrollment.id,
+        enrollment,
+        { new: true },
+      );
+      return updEnrollment;
+    }
+  }
+
+  async deleteEnrollment(payload: Record<string, any>): Promise<Enrollment> {
+    const e = await this.buildEnrollmentObject(payload);
+    const enrollment = await this.getEnrollmentByUserAndCourse(
+      e.user_id,
+      e.course_id,
+    );
+    if (enrollment === null) {
+      throw new Error(
+        `Can't delete enrollment becouse no enrollment exist with 'user_id' ${e.user_id} and 'course_id' ${e.course_id}`,
+      );
+    } else {
+      const delEnrollment = this.enrollmentModel.findByIdAndDelete(
+        enrollment.id,
+      );
+      return delEnrollment;
+    }
+  }
+
   async getEnrollmentByUserAndCourse(
     user_id: number,
     course_id: number,

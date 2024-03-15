@@ -28,6 +28,12 @@ export class ComputeService {
         case 'course.enrollment.created':
           await this.enrollmentService.createNewEnrollment(transaction.payload);
           break;
+        case 'course.enrollment.update':
+          await this.enrollmentService.updateEnrollment(transaction.payload);
+          break;
+        case 'course.enrollment.deleted':
+          await this.enrollmentService.deleteEnrollment(transaction.payload);
+          break;
         default:
           throw new Error(`Event ${transaction.event} not implemented yet!`);
       }
