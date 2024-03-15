@@ -1,3 +1,5 @@
+## Documentation
+
 - [Documentation](#documentation)
   - [Run the project locally](#run-the-project-locally)
   - [How it works?](#how-it-works)
@@ -9,8 +11,6 @@
   - [Already Available](#already-available)
   - [Next in pipeline](#next-in-pipeline)
   - [Pay Attention](#pay-attention)
-
-## Documentation
 
 ### Run the project locally
 
@@ -70,8 +70,6 @@ You just need to import the collection and try send transaction.
 ### Entities
 
 #### Enrollments
-
----
 
 ## Roadmap
 
