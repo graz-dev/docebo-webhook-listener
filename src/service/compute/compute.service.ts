@@ -29,6 +29,7 @@ export class ComputeService {
           await this.enrollmentService.createNewEnrollment(transaction.payload);
           break;
         case 'course.enrollment.update':
+        case 'course.enrollment.completed':
           await this.enrollmentService.updateEnrollment(transaction.payload);
           break;
         case 'course.enrollment.deleted':

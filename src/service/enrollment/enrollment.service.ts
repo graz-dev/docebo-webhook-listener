@@ -12,8 +12,13 @@ export class EnrollmentService {
   ) {}
 
   async createNewEnrollment(payload: Record<string, any>): Promise<Enrollment> {
-    const e = await this.buildEnrollmentObject(payload);
-    if (this.getEnrollmentByUserAndCourse(e.user_id, e.course_id) === null) {
+    const e = await this.buildEnrollmentObject(payload, null);
+    if (
+      (await this.getEnrollmentByUserAndCourse(
+        payload.user_id,
+        payload.course_id,
+      )) === null
+    ) {
       const newEnrollment = await new this.enrollmentModel(e);
       return newEnrollment.save();
     } else {
@@ -24,19 +29,19 @@ export class EnrollmentService {
   }
 
   async updateEnrollment(payload: Record<string, any>): Promise<Enrollment> {
-    const e = await this.buildEnrollmentObject(payload);
     const enrollment = await this.getEnrollmentByUserAndCourse(
-      e.user_id,
-      e.course_id,
+      payload.user_id,
+      payload.course_id,
     );
     if (enrollment === null) {
       throw new Error(
-        `Can't update enrollment becouse no enrollment exist with 'user_id' ${e.user_id} and 'course_id' ${e.course_id}`,
+        `Can't update enrollment becouse no enrollment exist with 'user_id' ${payload.user_id} and 'course_id' ${payload.course_id}`,
       );
     } else {
+      const e = await this.buildEnrollmentObject(payload, enrollment._id);
       const updEnrollment = this.enrollmentModel.findByIdAndUpdate(
         enrollment.id,
-        enrollment,
+        e,
         { new: true },
       );
       return updEnrollment;
@@ -44,14 +49,13 @@ export class EnrollmentService {
   }
 
   async deleteEnrollment(payload: Record<string, any>): Promise<Enrollment> {
-    const e = await this.buildEnrollmentObject(payload);
     const enrollment = await this.getEnrollmentByUserAndCourse(
-      e.user_id,
-      e.course_id,
+      payload.user_id,
+      payload.course_id,
     );
     if (enrollment === null) {
       throw new Error(
-        `Can't delete enrollment becouse no enrollment exist with 'user_id' ${e.user_id} and 'course_id' ${e.course_id}`,
+        `Can't delete enrollment becouse no enrollment exist with 'user_id' ${payload.user_id} and 'course_id' ${payload.course_id}`,
       );
     } else {
       const delEnrollment = this.enrollmentModel.findByIdAndDelete(
@@ -74,9 +78,10 @@ export class EnrollmentService {
 
   private async buildEnrollmentObject(
     payload: Record<string, any>,
+    _id: string,
   ): Promise<any> {
     return {
-      _id: uuidv4(),
+      _id: _id !== null ? _id : uuidv4(),
       user_id: payload.user_id,
       username: payload.username,
       course_id: payload.course_id,
@@ -85,6 +90,7 @@ export class EnrollmentService {
       enrollment_date: payload.enrollment_date,
       enrollment_date_begin_validity: payload.enrollment_date_begin_validity,
       enrollment_date_end_validity: payload.enrollment_date_end_validity,
+      completion_date: payload.completion_date,
       status: payload.status,
     };
   }

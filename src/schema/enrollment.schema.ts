@@ -33,6 +33,9 @@ export class Enrollment {
   enrollment_date_end_validity: Date | null;
 
   @Prop()
+  completion_date: Date | null;
+
+  @Prop()
   status: string;
 }
 

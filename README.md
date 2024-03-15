@@ -51,6 +51,7 @@ $ npm run start
   - [x] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
   - [x] Handle enrollments update
   - [x] Handle enrollments deletion
+  - [x] Handle couses completion
 
 ### Next in pipeline
 
@@ -59,7 +60,6 @@ $ npm run start
 - [ ] Manage `Enrollments` events
   - [ ] Handel collection initial load
   - [ ] Handle enrollment in ILT courses
-  - [ ] Handle couses completion
   - [ ] Expose APIs to get enrollment information
 
 ### Pay Attention

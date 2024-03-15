@@ -6,6 +6,7 @@ export interface IEnrollment extends Document {
   readonly username: string;
   readonly course_id: number;
   readonly course_name: string;
+  readonly completion_date: Date | null;
   readonly level: string;
   readonly enrollment_date: Date;
   readonly enrollment_date_begin_validity: Date | null;
