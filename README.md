@@ -14,6 +14,8 @@
   - [Already Available](#already-available)
   - [Next in pipeline](#next-in-pipeline)
   - [Pay Attention](#pay-attention)
+  - [Feature request](#feature-request)
+  - [Contributing](#contributing)
 
 ### Run the project locally
 
@@ -75,26 +77,26 @@ You just need to import the collection and try send transaction.
 
 #### Enrollments
 
-Each enrollment is saved in the `enrollments` MongoDB collection. 
+Each enrollment is saved in the `enrollments` MongoDB collection.
 You can find the Enrollments schema definition in `src/schema/enrollment.schema.ts`.
 The constraint on the `enrollments` collection is that the combination of `user_id` and `course_id` is unique, so two or more enrollments for the same user in the same course are not allowed.
 
 ##### `course.enrollment.created`
 
 Each time the server receive a transaction for the event `course.enrollment.created` a new enrollment document is created in the `enrollments` MongoDB collection.
-If a trasaction for a combination of `user_id` and `course_id` that already exist is received the application throw an error because it check the existence of other enrollments which violate this constraint before saving it. 
+If a trasaction for a combination of `user_id` and `course_id` that already exist is received the application throw an error because it check the existence of other enrollments which violate this constraint before saving it.
 
 ##### `course.enrollment.update` & `course.enrollment.completed`
 
-Each time the server receive a transaction for the event `course.enrollment.upate` the application check its existence by query the database to get an enrollment with the same `user_id` and `course_id` of the payload recived. 
+Each time the server receive a transaction for the event `course.enrollment.upate` the application check its existence by query the database to get an enrollment with the same `user_id` and `course_id` of the payload recived.
 If the query doesn't get anything then the application throws an error if the enrollment exist the is updated.
 
 The difference between `course.enrollment.update` and `course.enrollment.completed` is that on course completion it adds the `completion_date` field on the enrollment document.
 
 ##### `course.enrollment.deleted`
 
-Each time a user is unenrolled from a course a transaction over this event is executed. 
-Each time the server receive a transaction for the event `course.enrollment.deleted` the application check its existence by query the database to get an enrollment with the same `user_id` and `course_id` of the payload recived. 
+Each time a user is unenrolled from a course a transaction over this event is executed.
+Each time the server receive a transaction for the event `course.enrollment.deleted` the application check its existence by query the database to get an enrollment with the same `user_id` and `course_id` of the payload recived.
 If the query doesn't get anything then the application throws an error if the enrollment exist the is physically delete.
 
 ## Roadmap
@@ -103,6 +105,7 @@ If the query doesn't get anything then the application throws an error if the en
 
 - [x] Get all incoming Docebo webhooks call and save them in a MongoDB collection
 - [x] Handle errors persisting transaction saving transaction errors on a dedicated MongoDB collection to keep track of all errors and eventually retry
+- [x] Manage `compute_errors` collection to save errors from transaction compute
 - [ ] Manage `Enrollments` events
   - [x] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
   - [x] Handle enrollments update
@@ -112,7 +115,6 @@ If the query doesn't get anything then the application throws an error if the en
 ### Next in pipeline
 
 - [ ] Manage `transactions` & `transaction_errors` collection retantion based on configurations
-- [ ] Manage `compute_errors` collection to save errors from transaction compute
 - [ ] Manage `Enrollments` events
   - [ ] Handle collection initial load
   - [ ] Handle enrollment in ILT courses
@@ -124,3 +126,17 @@ Right now the project doesn't support the following Docebo webhooks configuratio
 
 1. Payload grouping for events of the same type
 2. Additional data and `extra_data` property
+
+### Feature request
+
+For any information about the project, to ask for support or for new feature contact me at:
+
+1. [LinkedIn](www.linkedin.com/in/castograziano)
+2. [Email](mailto:cst.grzn@gmail.com)
+3. [Open an issue](https://github.com/graz-dev/docebo-webhook-listener/issues/new)
+
+It's a pleasure to keep in touch with you!
+
+### Contributing
+
+Any contribution is welcome!
