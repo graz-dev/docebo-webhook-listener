@@ -53,6 +53,7 @@ To keep the response latency at a minimun the route return a `201` after saving 
 In case of error saving the transaction the error is saved in a dedicated `transaction_errors` MongoDB collection.
 
 To know more about docebo weebhook management read the following [docebo's documentation page](https://help.docebo.com/hc/it/articles/360020124459-Creare-e-gestire-i-webhook).
+
 To know more about docebo webhook events management read the following [docebo's documentation page](https://help.docebo.com/hc/it/articles/360020124479-Eventi-Webhook).
 
 ### Managed events
