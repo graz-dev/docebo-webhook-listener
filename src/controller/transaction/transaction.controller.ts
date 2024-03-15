@@ -20,8 +20,9 @@ export class TransactionController {
         await this.transactionService.createTransaction(createTransactionDto);
       this.computeService
         .compute(newTransaction)
-        .then(() => console.log('EXECUTED'))
-        .catch((err) => console.error(err));
+        .catch((err) =>
+          this.computeService.persistComputeError(newTransaction, err.message),
+        );
       return response.status(HttpStatus.OK).json({
         message: 'Transaction has been saved successfully',
         newTransaction,

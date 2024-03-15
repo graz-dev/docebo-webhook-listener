@@ -55,6 +55,9 @@ The `POST /transaction` route just get the webhook message and save it on the `t
 To keep the response latency at a minimun the route return a `201` after saving the transaction as it is, then the computational activities are performed asyncronously, in case something went wrong with the transaction saving Docebo will receive a `500` status code as response.
 In case of error saving the transaction the error is saved in a dedicated `transaction_errors` MongoDB collection.
 
+After saving the transaction on the `transactions` MongoDB collection the application compute it.
+If the compute method throws errors, they are logged in the `compute_errors` MongoDB collection. 
+
 To know more about docebo weebhook management read the following [docebo's documentation page](https://help.docebo.com/hc/it/articles/360020124459-Creare-e-gestire-i-webhook).
 
 To know more about docebo webhook events management read the following [docebo's documentation page](https://help.docebo.com/hc/it/articles/360020124479-Eventi-Webhook).
@@ -114,7 +117,7 @@ If the query doesn't get anything then the application throws an error if the en
 
 ### Next in pipeline
 
-- [ ] Manage `transactions` & `transaction_errors` collection retantion based on configurations
+- [ ] Manage `transactions`, `transaction_errors` and `compute_errors` collections retantion based on configurations
 - [ ] Manage `Enrollments` events
   - [ ] Handle collection initial load
   - [ ] Handle enrollment in ILT courses

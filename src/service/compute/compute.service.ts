@@ -1,10 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { Transaction } from 'src/schema/transaction.schema';
 import { EnrollmentService } from '../enrollment/enrollment.service';
+import { ComputeError } from 'src/schema/computeError.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { IComputeError } from 'src/interface/computeError.interface';
+import { Model } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class ComputeService {
-  constructor(private enrollmentService: EnrollmentService) {}
+  constructor(
+    private enrollmentService: EnrollmentService,
+    @InjectModel('ComputeError')
+    private computeErrorModel: Model<IComputeError>,
+  ) {}
 
   async compute(transaction: Transaction) {
     try {
@@ -41,5 +50,19 @@ export class ComputeService {
     } catch (err) {
       throw new Error(err);
     }
+  }
+
+  async persistComputeError(
+    transaction: Transaction,
+    error_message: string,
+  ): Promise<ComputeError> {
+    const { event, _id } = transaction;
+    const err = await new this.computeErrorModel({
+      event: event,
+      message_id: _id,
+      _id: uuidv4(),
+      error_message: error_message,
+    });
+    return err.save();
   }
 }

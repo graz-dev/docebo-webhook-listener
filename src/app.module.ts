@@ -14,6 +14,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EnrollmentService } from './service/enrollment/enrollment.service';
 import { EnrollmentSchema } from './schema/enrollment.schema';
 import { ComputeService } from './service/compute/compute.service';
+import { ComputeErrorSchema } from './schema/computeError.schema';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ComputeService } from './service/compute/compute.service';
       { name: 'Transaction', schema: TransactionSchema },
       { name: 'TransactionError', schema: TransactionErrorSchema },
       { name: 'Enrollment', schema: EnrollmentSchema },
+      { name: 'ComputeError', schema: ComputeErrorSchema },
     ]),
   ],
   controllers: [TransactionController],
