@@ -8,7 +8,8 @@
   - [Entities](#entities)
     - [Enrollments](#enrollments)
       - [`course.enrollment.created`](#courseenrollmentcreated)
-      - [`course.enrollment.update`](#courseenrollmentupdate)
+      - [`course.enrollment.update` \& `course.enrollment.completed`](#courseenrollmentupdate--courseenrollmentcompleted)
+      - [`course.enrollment.deleted`](#courseenrollmentdeleted)
 - [Roadmap](#roadmap)
   - [Already Available](#already-available)
   - [Next in pipeline](#next-in-pipeline)
@@ -83,7 +84,18 @@ The constraint on the `enrollments` collection is that the combination of `user_
 Each time the server receive a transaction for the event `course.enrollment.created` a new enrollment document is created in the `enrollments` MongoDB collection.
 If a trasaction for a combination of `user_id` and `course_id` that already exist is received the application throw an error because it check the existence of other enrollments which violate this constraint before saving it. 
 
-##### `course.enrollment.update`
+##### `course.enrollment.update` & `course.enrollment.completed`
+
+Each time the server receive a transaction for the event `course.enrollment.upate` the application check its existence by query the database to get an enrollment with the same `user_id` and `course_id` of the payload recived. 
+If the query doesn't get anything then the application throws an error if the enrollment exist the is updated.
+
+The difference between `course.enrollment.update` and `course.enrollment.completed` is that on course completion it adds the `completion_date` field on the enrollment document.
+
+##### `course.enrollment.deleted`
+
+Each time a user is unenrolled from a course a transaction over this event is executed. 
+Each time the server receive a transaction for the event `course.enrollment.deleted` the application check its existence by query the database to get an enrollment with the same `user_id` and `course_id` of the payload recived. 
+If the query doesn't get anything then the application throws an error if the enrollment exist the is physically delete.
 
 ## Roadmap
 

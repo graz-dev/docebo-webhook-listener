@@ -1,0 +1,36 @@
+meta {
+  name: course.enrollment.deleted
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://127.0.0.1:3000/transaction
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "event": "course.enrollment.created",
+    "fired_by_batch_action": false,
+    "message_id": "wh-20240313-145834-5bf0ce52-91d0-40f",
+    "payload": {
+      "fired_at": "2024-03-13 14:58:26",
+      "user_id": 9999,
+      "username": "john.doe@gmail.com",
+      "course_id": 9999,
+      "course_name": "My Course",
+      "level": "learner",
+      "enrollment_date": "2024-03-13 14:58:26",
+      "enrollment_date_begin_validity": null,
+      "enrollment_date_end_validity": null,
+      "subscribed_by_id": 9999,
+      "status": "subscribed"
+    }
+  }
+}

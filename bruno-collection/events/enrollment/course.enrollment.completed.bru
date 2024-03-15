@@ -1,7 +1,7 @@
 meta {
-  name: Create Transaction
+  name: course.enrollment.completed
   type: http
-  seq: 1
+  seq: 3
 }
 
 post {
@@ -11,28 +11,27 @@ post {
 }
 
 headers {
-  Content-Type: application/json
+  Content-Type: applicationjson
 }
 
 body:json {
   {
-    "event": "course.enrollment.completed",
+    "event": "course.enrollment.created",
     "fired_by_batch_action": false,
-    "message_id": "wh-20240313-145834-5bf0ce52-91d0-40fa-98d8-21212ssss1sssssss211222qqqq",
+    "message_id": "wh-20240313-145834-5bf0ce52-91d0-40f",
     "payload": {
       "fired_at": "2024-03-13 14:58:26",
       "completion_date": "2024-03-13 14:58:26",
-      "user_id": 13250,
-      "username": "graziano.casto@mia-platform.eu",
-      "course_id": 37,
-      "course_name": "Privacy course",
+      "user_id": 9999,
+      "username": "john.doe@gmail.com",
+      "course_id": 9999,
+      "course_name": "My Course",
       "level": "learner",
       "enrollment_date": "2024-03-13 14:58:26",
       "enrollment_date_begin_validity": null,
       "enrollment_date_end_validity": null,
-      "subscribed_by_id": 13250,
-      "status": "subscribed",
-      "test": "AAAAAAAAAAAAAA"
+      "subscribed_by_id": 9999,
+      "status": "subscribed"
     }
   }
 }
