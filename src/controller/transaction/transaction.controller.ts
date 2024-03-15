@@ -31,7 +31,7 @@ export class TransactionController {
         createTransactionDto,
         err.message,
       );
-      return response.status(HttpStatus.BAD_REQUEST).json({
+      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'Transaction not saved!',
         err,
       });
