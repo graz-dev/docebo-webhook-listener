@@ -52,7 +52,7 @@ _Docebo Webhook Listener_ is a simple project designed to retrieve your Docebo w
 
 The project expose only the `POST /transaction` route to communicate with Docebo, so you just need to configure each webhook to send messages to this route.
 The `POST /transaction` route just get the webhook message and save it on the `transactions` MongoDB collection.
-To keep the response latency at a minimun the route return a `201` after saving the transaction as it is, then the computational activities are performed asyncronously, in case something went wrong with the transaction saving Docebo will receive a `500` status code as response.
+To keep the response latency at a minimun the route return a `200` after saving the transaction as it is, then the computational activities are performed asyncronously, in case something went wrong with the transaction saving Docebo will receive a `500` status code as response.
 In case of error saving the transaction the error is saved in a dedicated `transaction_errors` MongoDB collection.
 
 After saving the transaction on the `transactions` MongoDB collection the application compute it.
