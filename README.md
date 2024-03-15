@@ -11,9 +11,9 @@
       - [`course.enrollment.update` \& `course.enrollment.completed`](#courseenrollmentupdate--courseenrollmentcompleted)
       - [`course.enrollment.deleted`](#courseenrollmentdeleted)
 - [Roadmap](#roadmap)
-  - [Already Available](#already-available)
+  - [Already available](#already-available)
   - [Next in pipeline](#next-in-pipeline)
-  - [Pay Attention](#pay-attention)
+  - [Pay attention](#pay-attention)
   - [Feature request](#feature-request)
   - [Contributing](#contributing)
 
@@ -101,7 +101,7 @@ If the query doesn't get anything then the application throws an error if the en
 
 ## Roadmap
 
-### Already Available
+### Already available
 
 - [x] Get all incoming Docebo webhooks call and save them in a MongoDB collection
 - [x] Handle errors persisting transaction saving transaction errors on a dedicated MongoDB collection to keep track of all errors and eventually retry
@@ -120,7 +120,7 @@ If the query doesn't get anything then the application throws an error if the en
   - [ ] Handle enrollment in ILT courses
   - [ ] Expose APIs to get enrollment information
 
-### Pay Attention
+### Pay attention
 
 Right now the project doesn't support the following Docebo webhooks configuration:
 
