@@ -45,12 +45,14 @@ $ npm run start
 - [X] Get all incoming Docebo webhooks call and save them in a MongoDB collection
 - [X] Handle errors persisting transaction saving transaction errors on a dedicated MongoDB collection to keep track of all errors and eventually retry
 - [ ] Manage `Enrollments` events
-  - [ ] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
+  - [X] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
 
 ### Next in pipeline 
 
 - [ ] Manage `transactions` & `transaction_errors` collection retantion based on configurations
+- [ ] Manage `compute_errors` collection to save errors from transaction compute
 - [ ] Manage `Enrollments` events
+  - [ ] Handel collection initial load 
   - [ ] Keep track of each enrollment in a dedicated MongoDB collection for each combination of user and course
   - [ ] Handle enrollments update
   - [ ] Handle enrollments deletion
