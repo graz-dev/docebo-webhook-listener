@@ -13,8 +13,25 @@ export class EnrollmentService {
 
   async createNewEnrollment(payload: Record<string, any>): Promise<Enrollment> {
     const e = await this.buildEnrollmentObject(payload);
-    const newEnrollment = await new this.enrollmentModel(e);
-    return newEnrollment.save();
+    if (this.getEnrollmentByUserAndCourse(e.user_id, e.course_id) === null) {
+      const newEnrollment = await new this.enrollmentModel(e);
+      return newEnrollment.save();
+    } else {
+      throw new Error(
+        `Can't save new enrollment becouse it alerady exist with 'user_id' ${e.user_id} and 'course_id' ${e.course_id}`,
+      );
+    }
+  }
+
+  async getEnrollmentByUserAndCourse(
+    user_id: number,
+    course_id: number,
+  ): Promise<IEnrollment> {
+    const existingEnrollment = await this.enrollmentModel.findOne({
+      user_id: user_id,
+      course_id: course_id,
+    });
+    return existingEnrollment;
   }
 
   private async buildEnrollmentObject(

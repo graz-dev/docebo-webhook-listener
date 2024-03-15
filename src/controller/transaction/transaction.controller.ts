@@ -21,7 +21,7 @@ export class TransactionController {
       this.computeService
         .compute(newTransaction)
         .then(() => console.log('EXECUTED'))
-        .catch(() => console.error('ERROR'));
+        .catch((err) => console.error(err));
       return response.status(HttpStatus.OK).json({
         message: 'Transaction has been saved successfully',
         newTransaction,
