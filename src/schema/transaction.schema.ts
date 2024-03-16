@@ -14,6 +14,9 @@ export class Transaction {
   @Prop()
   _id: string;
 
+  @Prop()
+  created_at: Date;
+
   @Prop(raw({}))
   payload: Record<string, any>;
 }

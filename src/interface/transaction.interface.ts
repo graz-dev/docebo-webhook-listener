@@ -5,4 +5,5 @@ export interface ITransaction extends Document {
   readonly fired_by_batch_action: boolean;
   readonly _id: string;
   readonly payload: any;
+  readonly created_at: Date;
 }

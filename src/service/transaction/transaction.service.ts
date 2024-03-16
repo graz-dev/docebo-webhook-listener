@@ -20,7 +20,7 @@ export class TransactionService {
     createTransactionDto: CreateTransactionDto,
   ): Promise<Transaction> {
     const { message_id: _id, ...rest } = createTransactionDto;
-    const t = { ...rest, _id };
+    const t = { ...rest, _id, created_at: Date.now() };
     const newTransaction = await new this.transactionModel(t);
     return newTransaction.save();
   }
