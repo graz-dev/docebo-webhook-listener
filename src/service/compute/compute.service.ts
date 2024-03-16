@@ -62,6 +62,7 @@ export class ComputeService {
       message_id: _id,
       _id: uuidv4(),
       error_message: error_message,
+      created_at: Date.now(),
     });
     return err.save();
   }

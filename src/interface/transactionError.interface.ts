@@ -5,4 +5,5 @@ export interface ITransactionError extends Document {
   readonly _id: string;
   readonly message_id: string;
   readonly error_message: string;
+  readonly created_at: Date;
 }

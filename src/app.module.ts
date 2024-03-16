@@ -15,6 +15,7 @@ import { EnrollmentService } from './service/enrollment/enrollment.service';
 import { EnrollmentSchema } from './schema/enrollment.schema';
 import { ComputeService } from './service/compute/compute.service';
 import { ComputeErrorSchema } from './schema/computeError.schema';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ComputeErrorSchema } from './schema/computeError.schema';
       { name: 'Enrollment', schema: EnrollmentSchema },
       { name: 'ComputeError', schema: ComputeErrorSchema },
     ]),
+    ScheduleModule.forRoot(),
   ],
   controllers: [TransactionController],
   providers: [TransactionService, EnrollmentService, ComputeService],

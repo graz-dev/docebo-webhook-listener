@@ -16,6 +16,9 @@ export class TransactionError {
 
   @Prop()
   error_message: string;
+
+  @Prop()
+  created_at: Date;
 }
 
 export const TransactionErrorSchema =

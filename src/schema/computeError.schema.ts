@@ -16,6 +16,9 @@ export class ComputeError {
 
   @Prop()
   error_message: string;
+
+  @Prop()
+  created_at: Date;
 }
 
 export const ComputeErrorSchema = SchemaFactory.createForClass(ComputeError);
