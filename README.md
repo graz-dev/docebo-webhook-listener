@@ -2,6 +2,7 @@
 
 - [Documentation](#documentation)
   - [Run the project locally](#run-the-project-locally)
+  - [Run with Docker](#run-with-docker)
   - [How it works?](#how-it-works)
   - [Managed events](#managed-events)
   - [Testing transactions](#testing-transactions)
@@ -43,6 +44,23 @@ DB_NAME=<your-db-name>
 $ yarn run start
 or
 $ npm run start
+```
+
+### Run with Docker
+
+To run the project using docker, follow the following steps
+
+1. Clone the project
+2. Build the image
+
+```
+$ docker build -t docebo-webhook-listener .
+```
+
+3. Run the image
+
+```
+$ docker run -p80:3000 docebo-webhook-listener
 ```
 
 ### How it works?
