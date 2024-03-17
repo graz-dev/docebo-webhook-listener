@@ -51,7 +51,7 @@ $ npm run start
 To run the project using docker, follow the following steps
 
 1. Clone the project
-2. Build the image
+2. Build the image. You can choose to pass all needed env variables during image build or even during the run phase.
 
 ```
 $ docker build -t \
@@ -61,13 +61,33 @@ $ docker build -t \
   --build-arg COMPUTE_ERROR_RETANTION=<your-retention-rule> \
   --build-arg TRANSACTION_ERROR_RETANTION=<your-retention-rule> \
   --build-arg TRANSACTION_RETANTION=<your-retention-rule> \
-  --no-cache .   
+  --no-cache .
 ```
 
-3. Run the image
+or
+
+```
+$ docker build -t \
+  docebo-webhook-listener \
+  --no-cache .
+```
+
+3. Run the image. Here you have to pass all the env variables if you didn't pass the during the build phase.
 
 ```
 $ docker run -p80:3000 docebo-webhook-listener
+```
+
+or
+
+```
+$ docker run \
+  --env MONGODB_URI=<your-mongo-connenction-string> \
+  --env DB_NAME=<your-mongo-db-name> \
+  --env COMPUTE_ERROR_RETANTION=<your-retention-rule> \
+  --env TRANSACTION_ERROR_RETANTION=<your-retention-rule> \
+  --env TRANSACTION_RETANTION=<your-retention-rule> \
+  -p80:3000 docebo-webhook-listener
 ```
 
 ### How it works?
