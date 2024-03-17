@@ -54,7 +54,14 @@ To run the project using docker, follow the following steps
 2. Build the image
 
 ```
-$ docker build -t docebo-webhook-listener .
+$ docker build -t \
+  docebo-webhook-listener \
+  --build-arg MONGODB_URI=<your-mongo-connenction-string> \
+  --build-arg DB_NAME=<your-mongo-db-name> \
+  --build-arg COMPUTE_ERROR_RETANTION=<your-retention-rule> \
+  --build-arg TRANSACTION_ERROR_RETANTION=<your-retention-rule> \
+  --build-arg TRANSACTION_RETANTION=<your-retention-rule> \
+  --no-cache .   
 ```
 
 3. Run the image
