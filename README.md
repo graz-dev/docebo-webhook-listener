@@ -92,6 +92,8 @@ $ docker run \
 
 ### How it works?
 
+<img width="1121" alt="Screenshot 2024-03-18 alle 14 52 10" src="https://github.com/graz-dev/docebo-webhook-listener/assets/62215881/d8bf9583-71fc-4680-897d-3df2f7804b21">
+
 _Docebo Webhook Listener_ is a simple project designed to retrieve your Docebo webhook transactions and manage them. At its core, it utilizes NestJS to create a server for receiving transactions and storing them in a _MongoDB_ collection.
 
 > Due to Docebo's error handling, which considers a request as failed if a 200 response is not received within 5 seconds, the project utilizes promises to persist each webhook message and after sending the response to Docebo, it then performs any computational tasks to keep the response latency to a minimum.
